@@ -1,0 +1,19 @@
+resources:
+  jobs:
+    mygitfirstjob:
+      name: mygitfirstjob
+      tasks:
+        - task_key: ingestionprocess
+          notebook_task:
+            notebook_path: ../../src/notebooks/ingestions.ipynb
+            base_parameters:
+              catalog_name: ${var.catalog_name}
+            source: WORKSPACE
+          environment_key: Default
+      queue:
+        enabled: true
+      environments:
+        - environment_key: Default
+          spec:
+            environment_version: "5"
+      performance_target: PERFORMANCE_OPTIMIZED
